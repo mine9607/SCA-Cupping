@@ -33,6 +33,11 @@ const coffeeSchema = new Schema({
   secret: String,
 });
 
+//define a mongoose model which creates a collection of users which have properties defined by userSchema
+const UserModel = new mongoose.model("User", userSchema);
+
+const coffeeModel = new mongoose.model("Coffee", coffeeSchema);
+
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
