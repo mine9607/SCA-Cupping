@@ -9,34 +9,57 @@ import _ from "lodash";
 const app = express();
 const port = 3000;
 
+//set static file folder and initiate body-parser
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Use mongoose to connect to a mongodb with password saved as environment variable
-await mongoose.connect(`mongodb+srv://crunchySumo6960:${process.env.DB_PASSWORD}@cluster0.vwk3y8s.mongodb.net/usersDB`);
+await mongoose.connect(
+  `mongodb+srv://crunchySumo6960:${process.env.DB_PASSWORD}@cluster0.vwk3y8s.mongodb.net/coffeeDB`
+);
 
 //create the mongoose "Schema keyword"
 const Schema = mongoose.Schema;
 
-//create a simple database schema to hold new users (defines the properties of objects which follow this schema)
-const userSchema = new Schema({
-  email: String,
-  password: String,
-  googleId: String,
-  secret: String,
-});
-
+//create a coffee schema for new coffees to be stored in the 'coffees' collection
 const coffeeSchema = new Schema({
-  coffeeId: String,
-  password: String,
-  googleId: String,
-  secret: String,
+  coffeeId: { type: String, default: "coffee" },
+  fragrancePoints: { type: Number, default: 0 },
+  aromaPoints: { type: Number, default: 2 },
+  smell: { type: Array, default: ["floral", "fruity"] },
+  flavorPoints: { type: Number, default: 4 },
+  aftertastePoints: { type: Number, default: 6 },
+  flavor: { type: Array, default: ["sour", "green/vegetative"] },
+  taste: { type: Array, default: ["salty", "bitter"] },
+  acidityPoints: { type: Number, default: 8 },
+  acidType: { type: Array, default: ["sweet", "lemon"] },
+  sweetnessPoints: { type: Number, default: 10 },
+  mouthfeelPoints: { type: Number, default: 12 },
+  mouthfeel: { type: Array, default: ["sweet", "lemon"] },
 });
 
-//define a mongoose model which creates a collection of users which have properties defined by userSchema
+//define the CoffeeModel to create the 'coffees' collection
+const CoffeeModel = new mongoose.model("Coffee", coffeeSchema);
+
+//testing inserting of new coffee to the 'coffees collection
+const defaultCoffee = new CoffeeModel({});
+defaultCoffee.save();
+
+//create a user schema for new users to be stored in the 'users' collection and reference the coffee collection
+const userSchema = new Schema({
+  email: { type: String, default: "test@123.com" },
+  password: { type: String, default: "123" },
+  googleId: String,
+  secret: String,
+  coffee: coffeeSchema,
+});
+
+//define the UserModel to create the 'users' collection
 const UserModel = new mongoose.model("User", userSchema);
 
-const coffeeModel = new mongoose.model("Coffee", coffeeSchema);
+//testing inserting of new user to the 'users' collection
+const defaultUser = new UserModel({});
+defaultUser.save();
 
 app.get("/", (req, res) => {
   res.render("home.ejs");

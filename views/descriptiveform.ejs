@@ -360,11 +360,23 @@
     <div name="acidity-area" class="container d-flex mb-2">
       <div name="checkbox-group1" class="container">
         <div name="fruity" class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+          <input
+            class="form-check-input"
+            name="acidType"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="dry acidity (herby, grassy, tart)"
+          />
           <label class="form-check-label" for="inlineCheckbox2">DRY ACIDITY (HERBY, GRASSY, TART)</label>
         </div>
         <div name="berry" class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" />
+          <input
+            class="form-check-input"
+            name="acidType"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="sweet acidity (juicy, fruit-like, bright)"
+          />
           <label class="form-check-label" for="inlineCheckbox2">SWEET ACIDITY (JUICY, FRUIT-LIKE, BRIGHT)</label>
         </div>
       </div>
@@ -439,13 +451,13 @@
       </div>
       <div name="checkbox-group2" class="container">
         <div class="form-check">
-          <input class="form-check-input" name="feel" type="checkbox" value="oily" id="defaultCheck1" />
+          <input class="form-check-input" name="mouthfeel" type="checkbox" value="oily" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">OILY</label>
         </div>
         <div class="form-check">
           <input
             class="form-check-input"
-            name="feel"
+            name="mouthfeel"
             type="checkbox"
             value="smooth (velvety, silky, syrupy)"
             id="defaultCheck1"
@@ -455,11 +467,11 @@
       </div>
       <div name="checkbox-group3" class="container">
         <div class="form-check">
-          <input class="form-check-input" name="feel" type="checkbox" value="mouth-drying" id="defaultCheck1" />
+          <input class="form-check-input" name="mouthfeel" type="checkbox" value="mouth-drying" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">MOUTH-DRYING</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" name="feel" type="checkbox" value="metallic" id="defaultCheck1" />
+          <input class="form-check-input" name="mouthfeel" type="checkbox" value="metallic" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">METALLIC</label>
         </div>
       </div>
@@ -467,7 +479,7 @@
   </div>
 
   <div class="container d-flex justify-content-center mb-2">
-    <input class="btn btn-light" type="submit" onclick="getSelectedCheckboxes()" value="Submit" />
+    <input class="btn btn-light" type="submit" value="Submit" />
   </div>
 </form>
 
