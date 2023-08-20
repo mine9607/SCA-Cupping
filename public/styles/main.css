@@ -1,3 +1,51 @@
 img.SCA-logo {
   max-width: 50;
 }
+
+p {
+  margin-top: auto;
+  margin-bottom: 1;
+}
+
+.formTitle {
+  font-size: 2.5rem;
+  font-weight: bolder;
+}
+
+.formTitleSubtext {
+  font-size: 1.25rem;
+  font-weight: bolder;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.impressiontext {
+  font-size: 12px;
+}
+
+.impressionTitle {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.scale-labels {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.form-check-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.form-check-input {
+  padding-left: 12px;
+}
+
+.custom-round-checkbox {
+  border-radius: 50%; /* Makes the checkbox round */
+}
+
+.custom-round-checkbox .custom-control-label::after {
+  border-radius: 50%; /* Makes the inner circle round */
+}

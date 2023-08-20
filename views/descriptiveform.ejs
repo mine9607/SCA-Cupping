@@ -7,9 +7,34 @@
     src="//images.squarespace-cdn.com/content/v1/584f6bbef5e23149e5522201/1585137262099-VOUGJUSB290Z3UZCBAGP/SCA_logo_header.jpg"
     alt="Specialty Coffee Association"
   />
+</div><br/>
+
+<div class="container" name="title">
+  <div class="row bg-light gap-3">
+    <div class="col-8 border bg-dark text-white fw-medium fs-5">PART 1: SENSORY DESCRIPTIVE ASSESSMENT</div>
+      <div class="row border">
+        <div class="col-2">
+          <p class="fs-5 fw-semibold border">Fragrance</p>
+          <p class="fs-6 fw-semibold border">Intensity</p>
+        </div>
+        <div class="col-4 border">Scale Goes Here</div>
+      </div>
+    <div class="col-4 border bg-dark text-white fw-medium fs-5">PART 2: AFFECTIVE ASSESSMENT</div>
+  </div>
 </div>
+<div class="container" name="Fragrance">
+  <div class="row gap-3">
+    <div class="col-2 border">Title</div>
+    <div class="col border">Scale</div>
+    <div class="col-4 border">Quality Bubbles</div>
+  </div>
+</div>
+<br/>
+
+
 <form action="/data" method="POST">
-  -->
+  
+  <div class="container" name="part1">
   <!-- sample id input box -->
   <div class="container d-flex align-items-center bg-dark text-white p-4 mb-2">
     <p class="m-0 fs-3">PART 1: SENSORY DESCRIPTIVE ASSESSMENT</p>
@@ -30,7 +55,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="fragrancePoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="fragranceIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -52,7 +77,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="aromaPoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="aromaIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -66,86 +91,128 @@
       <div name="checkbox-group1" class="container">
         <p class="m-0 fw-bold">SELECT UP TO FIVE THAT APPLY:</p>
         <div class="form-check">
-          <input class="form-check-input" name="smell" type="checkbox" value="floral" id="defaultCheck1" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="defaultCheck1" value="floral" />
           <label class="form-check-label" for="defaultCheck1">FLORAL</label>
         </div>
         <div name="fruity" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="fruity" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="fruity" />
           <label class="form-check-label" for="inlineCheckbox2">FRUITY</label>
         </div>
         <span>( </span>
         <div name="berry" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="berry" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="berry" />
           <label class="form-check-label" for="inlineCheckbox2">BERRY</label>
         </div>
         <div name="dried-fruit" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="dried fruit" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="dried fruit"
+          />
           <label class="form-check-label" for="inlineCheckbox2">DRIED FRUIT</label>
         </div>
         <div name="citrus-fruit" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="citrus fruit" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="citrus fruit"
+          />
           <label class="form-check-label" for="inlineCheckbox2">CITRUS FRUIT )</label>
         </div>
         <br />
         <div name="sour-fermented" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="sour/fermented" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="sour/fermented"
+          />
           <label class="form-check-label" for="inlineCheckbox2">SOUR/FERMENTED</label>
         </div>
         <span>( </span>
         <div name="sour" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="sour" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="sour" />
           <label class="form-check-label" for="inlineCheckbox2">SOUR</label>
         </div>
         <div name="fermented" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="fermented" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="fermented"
+          />
           <label class="form-check-label" for="inlineCheckbox2">FERMENTED )</label>
         </div>
         <div name="green-vegetative" class="form-check">
-          <input class="form-check-input" name="smell" type="checkbox" value="green/vegetative" id="defaultCheck1" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            value="green/vegetative"
+            id="defaultCheck1"
+          />
           <label class="form-check-label" for="defaultCheck1">GREEN/VEGETATIVE</label>
         </div>
       </div>
       <div name="checkbox-group2" class="container">
         <div name="fruity" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="other" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="other" />
           <label class="form-check-label" for="inlineCheckbox2">OTHER</label>
         </div>
         <span>( </span>
         <div name="chemical" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="chemical" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="chemical" />
           <label class="form-check-label" for="inlineCheckbox2">CHEMICAL</label>
         </div>
         <div name="musty-earthy" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="musty/earthy" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="musty/earthy"
+          />
           <label class="form-check-label" for="inlineCheckbox2">MUSTY/EARTHY</label>
         </div>
         <div name="papery" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="papery" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="papery" />
           <label class="form-check-label" for="inlineCheckbox2">PAPERY )</label>
         </div>
         <div name="roasted" class="form-check">
-          <input class="form-check-input" name="smell" type="checkbox" value="roasted" id="defaultCheck1" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" value="roasted" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">ROASTED</label>
         </div>
         <div name="nutty-cocoa" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="nutty/cocoa" />
+          <input
+            class="form-check-input"
+            name="smellCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="nutty/cocoa"
+          />
           <label class="form-check-label" for="inlineCheckbox2">NUTTY/COCOA</label>
         </div>
         <span>( </span>
         <div name="nutty" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="nutty" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="nutty" />
           <label class="form-check-label" for="inlineCheckbox2">NUTTY</label>
         </div>
         <div name="cocoa" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="cocoa" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="cocoa" />
           <label class="form-check-label" for="inlineCheckbox2">COCOA )</label>
         </div>
         <div name="spicy" class="form-check">
-          <input class="form-check-input" name="smell" type="checkbox" value="spicy" id="defaultCheck1" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" value="spicy" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">SPICY</label>
         </div>
         <div name="sweet" class="form-check form-check-inline">
-          <input class="form-check-input" name="smell" type="checkbox" id="inlineCheckbox2" value="sweet" />
+          <input class="form-check-input" name="smellCharacter" type="checkbox" id="inlineCheckbox2" value="sweet" />
           <label class="form-check-label" for="inlineCheckbox2">SWEET</label>
         </div>
         <span>( </span>
@@ -176,7 +243,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="flavorPoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="flavorIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -198,7 +265,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="aftertastePoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="aftertasteIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -212,7 +279,7 @@
       <div name="checkbox-group1" class="container">
         <p class="m-0 fw-bold">SELECT UP TO FIVE THAT APPLY:</p>
         <div class="form-check">
-          <input class="form-check-input" name="flavor" type="checkbox" value="floral" id="defaultCheck1" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" value="floral" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">FLORAL</label>
         </div>
         <div name="fruity" class="form-check form-check-inline">
@@ -221,73 +288,121 @@
         </div>
         <span>( </span>
         <div name="berry" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="berry" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="berry" />
           <label class="form-check-label" for="inlineCheckbox2">BERRY</label>
         </div>
         <div name="dried-fruit" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="dried fruit" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="dried fruit"
+          />
           <label class="form-check-label" for="inlineCheckbox2">DRIED FRUIT</label>
         </div>
         <div name="citrus-fruit" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="citrus fruit" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="citrus fruit"
+          />
           <label class="form-check-label" for="inlineCheckbox2">CITRUS FRUIT )</label>
         </div>
         <br />
         <div name="sour-fermented" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="sour/fermented" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="sour/fermented"
+          />
           <label class="form-check-label" for="inlineCheckbox2">SOUR/FERMENTED</label>
         </div>
         <span>( </span>
         <div name="sour" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="sour" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="sour" />
           <label class="form-check-label" for="inlineCheckbox2">SOUR</label>
         </div>
         <div name="fermented" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="fermented" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="fermented"
+          />
           <label class="form-check-label" for="inlineCheckbox2">FERMENTED )</label>
         </div>
         <div name="green-vegetative" class="form-check">
-          <input class="form-check-input" name="flavor" type="checkbox" value="green/vegetative" id="defaultCheck1" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            value="green/vegetative"
+            id="defaultCheck1"
+          />
           <label class="form-check-label" for="defaultCheck1">GREEN/VEGETATIVE</label>
         </div>
       </div>
       <div name="checkbox-group2" class="container">
         <div name="fruity" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="other" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="other" />
           <label class="form-check-label" for="inlineCheckbox2">OTHER</label>
         </div>
         <span>( </span>
         <div name="chemical" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="chemical" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="chemical"
+          />
           <label class="form-check-label" for="inlineCheckbox2">CHEMICAL</label>
         </div>
         <div name="musty-earthy" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="musty/earthy" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="musty/earthy"
+          />
           <label class="form-check-label" for="inlineCheckbox2">MUSTY/EARTHY</label>
         </div>
         <div name="papery" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="papery" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="papery" />
           <label class="form-check-label" for="inlineCheckbox2">PAPERY )</label>
         </div>
         <div name="roasted" class="form-check">
-          <input class="form-check-input" name="flavor" type="checkbox" value="roasted" id="defaultCheck1" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" value="roasted" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">ROASTED</label>
         </div>
         <div name="nutty-cocoa" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="nutty/cocoa" />
+          <input
+            class="form-check-input"
+            name="flavorCharacter"
+            type="checkbox"
+            id="inlineCheckbox2"
+            value="nutty/cocoa"
+          />
           <label class="form-check-label" for="inlineCheckbox2">NUTTY/COCOA</label>
         </div>
         <span>( </span>
         <div name="nutty" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="nutty" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="nutty" />
           <label class="form-check-label" for="inlineCheckbox2">NUTTY</label>
         </div>
         <div name="cocoa" class="form-check form-check-inline">
-          <input class="form-check-input" name="flavor" type="checkbox" id="inlineCheckbox2" value="cocoa" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" id="inlineCheckbox2" value="cocoa" />
           <label class="form-check-label" for="inlineCheckbox2">COCOA )</label>
         </div>
         <div name="spicy" class="form-check">
-          <input class="form-check-input" name="flavor" type="checkbox" value="" id="defaultCheck1" />
+          <input class="form-check-input" name="flavorCharacter" type="checkbox" value="" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">SPICY</label>
         </div>
         <div name="sweet" class="form-check form-check-inline">
@@ -307,25 +422,25 @@
       <div name="checkbox-group3" class="container">
         <p class="m-0 fw-bold">MAIN TASTES (2):</p>
         <div name="salty-taste" class="form-check form-check-inline">
-          <input class="form-check-input" name="taste" type="checkbox" id="inlineCheckbox2" value="salty" />
+          <input class="form-check-input" name="tasteSense" type="checkbox" id="inlineCheckbox2" value="salty" />
           <label class="form-check-label" for="inlineCheckbox2">SALTY</label>
         </div>
         <div name="bitter-taste" class="form-check form-check-inline">
-          <input class="form-check-input" name="taste" type="checkbox" id="inlineCheckbox2" value="bitter" />
+          <input class="form-check-input" name="tasteSense" type="checkbox" id="inlineCheckbox2" value="bitter" />
           <label class="form-check-label" for="inlineCheckbox2">BITTER</label>
         </div>
         <br />
         <div name="sour-taste" class="form-check form-check-inline">
-          <input class="form-check-input" name="taste" type="checkbox" id="inlineCheckbox2" value="sour" />
+          <input class="form-check-input" name="tasteSense" type="checkbox" id="inlineCheckbox2" value="sour" />
           <label class="form-check-label" for="inlineCheckbox2">SOUR</label>
         </div>
         <div name="umami-taste" class="form-check form-check-inline">
-          <input class="form-check-input" name="taste" type="checkbox" id="inlineCheckbox2" value="umami" />
+          <input class="form-check-input" name="tasteSense" type="checkbox" id="inlineCheckbox2" value="umami" />
           <label class="form-check-label" for="inlineCheckbox2">UMAMI</label>
         </div>
         <br />
         <div name="sweet-taste" class="form-check form-check-inline">
-          <input class="form-check-input" name="taste" type="checkbox" id="inlineCheckbox2" value="sweet" />
+          <input class="form-check-input" name="tasteSense" type="checkbox" id="inlineCheckbox2" value="sweet" />
           <label class="form-check-label" for="inlineCheckbox2">SWEET</label>
         </div>
       </div>
@@ -347,7 +462,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="acidityPoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="acidIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -362,7 +477,7 @@
         <div name="fruity" class="form-check form-check-inline">
           <input
             class="form-check-input"
-            name="acidType"
+            name="acidCharacter"
             type="checkbox"
             id="inlineCheckbox2"
             value="dry acidity (herby, grassy, tart)"
@@ -372,7 +487,7 @@
         <div name="berry" class="form-check form-check-inline">
           <input
             class="form-check-input"
-            name="acidType"
+            name="acidCharacter"
             type="checkbox"
             id="inlineCheckbox2"
             value="sweet acidity (juicy, fruit-like, bright)"
@@ -398,7 +513,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="sweetnessPoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="sweetnessIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -411,7 +526,7 @@
   </div>
 
   <!-- Mouthfeel Form Box -->
-  <div name="flavor-box" class="container border mb-2">
+  <div name="mouthfeel-box" class="container border mb-2">
     <div class="mouthfeel-container d-flex justify-content-center align-items-center">
       <div class="container d-flex justify-content-start align-items-center col-lg-3 p-4" name="fragrance">
         <div class="text">
@@ -425,7 +540,7 @@
           <label for="customRange3" class="form-label">MEDIUM</label>
           <label for="customRange3" class="form-label">HIGH</label>
         </div>
-        <input type="range" class="form-range" name="mouthfeelPoints" min="0" max="15" step="1" id="customRange3" />
+        <input type="range" class="form-range" name="mouthfeelIntensity" min="0" max="15" step="1" id="customRange3" />
         <div class="scale-labels d-flex justify-content-between fs-6">
           <label for="customRange3" class="form-label">0</label>
           <label for="customRange3" class="form-label">5</label>
@@ -441,7 +556,7 @@
         <div class="form-check">
           <input
             class="form-check-input"
-            name="feel"
+            name="mouthfeelQuality"
             type="checkbox"
             value="rough (gritty, chalky, sandy)"
             id="defaultCheck1"
@@ -451,13 +566,13 @@
       </div>
       <div name="checkbox-group2" class="container">
         <div class="form-check">
-          <input class="form-check-input" name="mouthfeel" type="checkbox" value="oily" id="defaultCheck1" />
+          <input class="form-check-input" name="mouthfeelQuality" type="checkbox" value="oily" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">OILY</label>
         </div>
         <div class="form-check">
           <input
             class="form-check-input"
-            name="mouthfeel"
+            name="mouthfeelQuality"
             type="checkbox"
             value="smooth (velvety, silky, syrupy)"
             id="defaultCheck1"
@@ -467,11 +582,17 @@
       </div>
       <div name="checkbox-group3" class="container">
         <div class="form-check">
-          <input class="form-check-input" name="mouthfeel" type="checkbox" value="mouth-drying" id="defaultCheck1" />
+          <input
+            class="form-check-input"
+            name="mouthfeelQuality"
+            type="checkbox"
+            value="mouth-drying"
+            id="defaultCheck1"
+          />
           <label class="form-check-label" for="defaultCheck1">MOUTH-DRYING</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" name="mouthfeel" type="checkbox" value="metallic" id="defaultCheck1" />
+          <input class="form-check-input" name="mouthfeelQuality" type="checkbox" value="metallic" id="defaultCheck1" />
           <label class="form-check-label" for="defaultCheck1">METALLIC</label>
         </div>
       </div>
@@ -481,6 +602,7 @@
   <div class="container d-flex justify-content-center mb-2">
     <input class="btn btn-light" type="submit" value="Submit" />
   </div>
+
 </form>
 
 <%- include("partials/footer.ejs") %>
