@@ -36,6 +36,8 @@ p {
 .form-check-label {
   font-size: 0.75rem;
   font-weight: 600;
+  padding: 0px;
+  margin: 0px;
 }
 
 .form-check-input {
@@ -44,12 +46,5 @@ p {
 
 .form-check {
   margin-right: 0px;
-}
-
-.custom-round-checkbox {
-  border-radius: 50%; /* Makes the checkbox round */
-}
-
-.custom-round-checkbox .custom-control-label::after {
-  border-radius: 50%; /* Makes the inner circle round */
+  margin-top: 0px;
 }
