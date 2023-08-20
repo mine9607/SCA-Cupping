@@ -42,6 +42,10 @@ p {
   padding-left: 12px;
 }
 
+.form-check {
+  margin-right: 0px;
+}
+
 .custom-round-checkbox {
   border-radius: 50%; /* Makes the checkbox round */
 }
