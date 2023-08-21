@@ -121,6 +121,34 @@ app.post("/data", async (req, res) => {
   console.log(req.body);
 });
 
+app.post("/score", async (req, res)=>{
+  console.log(req.body);
+
+  const fragrance = parseInt(req.body.fragranceFinalScore);
+  const aroma = parseInt(req.body.aromaFinalScore);
+  const flavor = parseInt(req.body.flavorFinalScore);
+  const aftertaste = parseInt(req.body.aftertasteFinalScore);
+  const acidity = parseInt(req.body.acidityFinalScore);
+  const sweetness = parseInt(req.body.sweetnessFinalScore);
+  const mouthfeel = parseInt(req.body.mouthfeelFinalScore);
+  const overall = parseInt(req.body.overallFinalScore);
+
+  let nonuniform;
+  if(!req.body.nonuniformCup){
+    nonuniform = 0;
+  } else {
+    nonuniform = req.body.nonuniformCup.length;
+  }
+  
+  let defects;
+  if(!req.body.defectCup){
+    defects = 0;
+  } else {
+    defects = req.body.defectCup.length;
+  }
+  console.log(cupScore(fragrance, aroma, flavor, aftertaste, acidity, sweetness, mouthfeel, overall, nonuniform, defects));
+})
+
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`);
 });
@@ -137,16 +165,7 @@ function cupScore(fragrance, aroma, flavor, aftertaste, acidity, sweetness, mout
   return score;
 }
 
-// const fragrance = req.body.fragranceQuality;
-// const aroma = req.body.aromaQuality;
-// const flavor = req.body.flavorQuality;
-// const aftertaste = req.body.aftertasteQuality;
-// const acidity = req.body.acidQuality;
-// const sweetness = req.body.sweetnessQuality;
-// const mouthfeel = req.body.mouthfeelQuality;
-// const overall = req.body.overallQuality;
-// const nonuniform = req.body.nonuniformCount;
-// const defects = req.body.defectCount;
+
 
 // const score = cupScore(
 //   fragrance,

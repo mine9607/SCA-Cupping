@@ -28,9 +28,22 @@ p {
   font-size: 12px;
 }
 
+.rangeTitle{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.rangeSubtitle{
+  font-size: 12px;
+  font-weight: bold;
+}
 .scale-labels {
   font-weight: bold;
   font-size: 12px;
+}
+
+hr {
+  margin: 8px;
 }
 
 .form-check-label {
@@ -42,9 +55,39 @@ p {
 
 .form-check-input {
   padding-left: 12px;
+
 }
 
 .form-check {
   margin-right: 0px;
   margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+
+
+/* Remove the spinner from the number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+
+.finalScore{
+  font-size: 0.75rem;
+  height: 24px;
+  border-radius: 1rem;
+  text-align: center;
+  width: 3rem;
+  margin-left: 10px;
+}
+
+fieldset legend {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 0;
 }
