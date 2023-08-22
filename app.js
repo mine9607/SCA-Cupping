@@ -29,37 +29,37 @@ const scoreSchema = new Schema({
   coffeeId: { type: String, default: "123456" },
   fragranceIntensity: { type: Number, min: 0, max: 15, default: 2 },
   fragranceScore: { type: Array, default: 0 },
-  fragranceFinalScore: {type: Number, default: 5},
+  fragranceFinalScore: { type: Number, default: 5 },
   aromaIntensity: { type: Number, min: 0, max: 15, default: 4 },
   aromaScore: { type: Array, default: 0 },
-  aromaFinalScore: {type: Number, default: 5},
+  aromaFinalScore: { type: Number, default: 5 },
   smellCharacter: { type: Array, default: ["fruity", "berry"] },
-  smellNotes:String,
+  smellNotes: String,
   flavorIntensity: { type: Number, min: 0, max: 15, default: 6 },
-  flavorScore:{type: Array, default:0},
-  flavorFinalScore: {type: Number, default: 5},
+  flavorScore: { type: Array, default: 0 },
+  flavorFinalScore: { type: Number, default: 5 },
   aftertasteIntensity: { type: Number, min: 0, max: 15, default: 8 },
-  aftertasteScore: {type: Array, default: 0},
+  aftertasteScore: { type: Array, default: 0 },
   aftertasteFinalScore: { type: Number, default: 5 },
   flavorCharacter: { type: Array, default: ["sour", "fermented"] },
   taste: { type: Array, default: ["salty", "bitter"] },
   tasteNotes: String,
   acidIntensity: { type: Number, min: 0, max: 15, default: 10 },
-  acidityScore: {type: Array, default: 0},
+  acidityScore: { type: Array, default: 0 },
   acidityFinalScore: { type: Number, default: 5 },
   acidityCharacter: { type: Array, default: ["sweet", "lemon"] },
   acidityNotes: String,
   sweetnessIntensity: { type: Number, min: 0, max: 15, default: 12 },
-  sweetnessScore: {type: Array, default: 0},
+  sweetnessScore: { type: Array, default: 0 },
   sweetnessFinalScore: { type: Number, default: 5 },
   sweetnessNotes: String,
   mouthfeelIntensity: { type: Number, min: 0, max: 15, default: 14 },
-  mouthfeelScore: {type: Array, default: 0},
+  mouthfeelScore: { type: Array, default: 0 },
   mouthfeelFinalScore: { type: Number, default: 5 },
   mouthfeelCharacter: { type: Array, default: ["silky", "velvety"] },
   mouthfeelNotes: String,
   extrinsicNotes: String,
-  overallScore: {type: Array, default: 0},
+  overallScore: { type: Array, default: 0 },
   overallFinalScore: { type: Number, default: 5 },
   nonUniformCups: { type: Array, default: 0 },
   defectiveCups: { type: Array, default: 0 },
@@ -109,7 +109,7 @@ const CoffeeModel = new mongoose.model("Coffee", coffeeSchema);
 const defaultCoffee = new CoffeeModel({});
 //defaultCoffee.save();
 
-//define home route API requests
+//DEFINE RESTFUL APIs
 app
   .route("/")
   .get((req, res) => {
@@ -121,10 +121,29 @@ app
   .delete();
 
 app.get("/form", (req, res) => {
-  res.render("testlayout.ejs");
+  res.render("form.ejs");
 });
 
-app.route("/users").get().post().put().patch().delete();
+app
+  .route("/register")
+  .get((req, res) => {
+    res.render("register.ejs");
+  })
+  .post()
+  .put()
+  .patch()
+  .delete();
+
+app
+  .route("/login")
+  .get((req, res) => {
+    res.render("login.ejs");
+  })
+  .post()
+  .put()
+  .patch()
+  .delete();
+
 app.route("/coffee").get().post().put().patch().delete();
 app
   .route("/cupScore")
@@ -140,7 +159,7 @@ app.post("/data", async (req, res) => {
   console.log(req.body);
 });
 
-app.post("/score", async (req, res)=>{
+app.post("/score", async (req, res) => {
   console.log(req.body);
 
   const fragrance = parseInt(req.body.fragranceFinalScore);
@@ -153,20 +172,22 @@ app.post("/score", async (req, res)=>{
   const overall = parseInt(req.body.overallFinalScore);
 
   let nonuniform;
-  if(!req.body.nonuniformCup){
+  if (!req.body.nonuniformCup) {
     nonuniform = 0;
   } else {
     nonuniform = req.body.nonuniformCup.length;
   }
-  
+
   let defects;
-  if(!req.body.defectCup){
+  if (!req.body.defectCup) {
     defects = 0;
   } else {
     defects = req.body.defectCup.length;
   }
-  console.log(cupScore(fragrance, aroma, flavor, aftertaste, acidity, sweetness, mouthfeel, overall, nonuniform, defects));
-})
+  console.log(
+    cupScore(fragrance, aroma, flavor, aftertaste, acidity, sweetness, mouthfeel, overall, nonuniform, defects)
+  );
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port: ${port}`);
@@ -183,19 +204,3 @@ function cupScore(fragrance, aroma, flavor, aftertaste, acidity, sweetness, mout
 
   return score;
 }
-
-
-
-// const score = cupScore(
-//   fragrance,
-//   aroma,
-//   flavor,
-//   aftertaste,
-//   acidity,
-//   sweetness,
-//   mouthfeel,
-//   overall,
-//   nonuniform,
-//   defects
-// );
-// console.log(score);
