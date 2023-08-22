@@ -1,28 +1,23 @@
 <%- include("partials/header.ejs") %>
-<div class="px-4 pt-5 my-5 text-center border-bottom">
-  <h1 class="display-4 fw-bold text-body-emphasis">Centered screenshot</h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4">
-      Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open
-      source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and
-      powerful JavaScript plugins.
-    </p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-      <a class="btn btn-light btn-lg" href="/register" role="button">Register</a>
-      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
-      <a class="btn btn-outline-secondary btn-lg" href="/form" role="button">Form</a>
-    </div>
+<div class="container text-center justify-content-center">
+  <div class="overflow-hidden m-5" style="max-height: 30vh">
+    <img
+      class="img SCA-logo"
+      style="max-width: 200px"
+      src="https://images.squarespace-cdn.com/content/v1/584f6bbef5e23149e5522201/1585137262099-VOUGJUSB290Z3UZCBAGP/SCA_logo_header.jpg"
+      alt="Specialty Coffee Association"
+    />
   </div>
-  <div class="overflow-hidden" style="max-height: 30vh">
-    <div class="container px-5">
-      <img
-        src="bootstrap-docs.png"
-        class="img-fluid border rounded-3 shadow-lg mb-4"
-        alt="Example image"
-        width="700"
-        height="500"
-        loading="lazy"
-      />
+  <h1 class="display-3 text-body-emphasis mb-5">Cupping Database</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="fs-4 fw-light mb-5">
+      Register and login to access an easy to use online SCA Cupping form to store all your coffee cupping profiles.
+      Take your QA/QC, Purchasing and/or Roasting to the next level with this easy to use resource and never struggle to
+      organize your coffees again!
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-center mb-4 gap-4">
+      <a class="btn btn-outline-secondary btn-lg" href="/register" role="button">Register</a>
+      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
     </div>
   </div>
 </div>

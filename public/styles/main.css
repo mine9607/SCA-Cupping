@@ -7,6 +7,11 @@ p {
   margin-bottom: 1;
 }
 
+.button {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
 .formTitle {
   font-size: 2.5rem;
   font-weight: bolder;
@@ -28,12 +33,12 @@ p {
   font-size: 12px;
 }
 
-.rangeTitle{
+.rangeTitle {
   font-size: 18px;
   font-weight: bold;
 }
 
-.rangeSubtitle{
+.rangeSubtitle {
   font-size: 12px;
   font-weight: bold;
 }
@@ -55,7 +60,6 @@ hr {
 
 .form-check-input {
   padding-left: 12px;
-
 }
 
 .form-check {
@@ -65,18 +69,15 @@ hr {
   padding-bottom: 0px;
 }
 
-
-
 /* Remove the spinner from the number input */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
-
-.finalScore{
+.finalScore {
   font-size: 0.75rem;
   height: 24px;
   border-radius: 1rem;
