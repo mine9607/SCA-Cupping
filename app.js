@@ -5,6 +5,9 @@ import mongoose from "mongoose";
 import axios from "axios";
 import _ from "lodash";
 import { parse } from "path";
+import passport from "passport";
+import bcrypt from "bcrypt";
+const saltRounds = 10;
 
 //create express app framework:
 const app = express();
@@ -119,18 +122,46 @@ app
     res.render("register.ejs");
   })
   .post((req, res) => {
-    const newUser = new UserModel({
-      email: req.body.email,
-      password: req.body.password,
-    });
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+      const newUser = new UserModel({
+        email: req.body.email,
+        password: hash,
+      });
 
-    newUser.save();
-    res.redirect("/");
+      newUser.save();
+      res.redirect("/");
+    });
   });
 
-app.get("/login", (req, res) => {
-  res.render("login.ejs");
-});
+app
+  .route("/login")
+  .get((req, res) => {
+    res.render("login.ejs");
+  })
+  .post(async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    //compare user email and password against registered list of users
+    //to query a database without error handling
+    const foundUser = await UserModel.findOne({ email: email });
+    console.log(foundUser);
+    if (foundUser) {
+      bcrypt.compare(password, foundUser.password, function (err, result) {
+        if (result === true) {
+          res.render("dashboard.ejs");
+        }
+      });
+    }
+
+    //to query a database use the "try", "await", "catch" syntax for error handling
+    // try {
+    //   const foundUser = await UserModel.findOne({ email: email });
+    //   console.log(foundUser);
+    // } catch (error) {
+    //   console.log("Error:", error);
+    // }
+  });
 
 app
   .route("/form")
@@ -180,8 +211,6 @@ app
       defects
     );
 
-    console.log(totalScore);
-
     const newScore = new ScoreModel({
       cupperName: req.body.cupperName,
       cuppingDate: req.body.cuppingDate,
@@ -228,69 +257,8 @@ app
     });
 
     newScore.save();
-    //res.redirect("/dashboard");
+    res.redirect("/dashboard");
   });
-
-app.route("/coffee").get().post().put().patch().delete();
-app
-  .route("/cupScore")
-  .get()
-  .post((req, res) => {
-    console.log(req.body);
-  })
-  .put()
-  .patch()
-  .delete();
-
-app.post("/data", async (req, res) => {
-  console.log(req.body);
-});
-
-app.post("/score", async (req, res) => {
-  //view all form inputs
-  console.log(req.body);
-
-  //assign form inputs to variables nee3ded for totalScore calculation
-  const fragrance = parseInt(req.body.fragranceFinalScore);
-  const aroma = parseInt(req.body.aromaFinalScore);
-  const flavor = parseInt(req.body.flavorFinalScore);
-  const aftertaste = parseInt(req.body.aftertasteFinalScore);
-  const acidity = parseInt(req.body.acidityFinalScore);
-  const sweetness = parseInt(req.body.sweetnessFinalScore);
-  const mouthfeel = parseInt(req.body.mouthfeelFinalScore);
-  const overall = parseInt(req.body.overallFinalScore);
-
-  //Code to handle nonuniform = undefined in case of uniform cups
-  let nonuniform;
-  if (!req.body.nonuniformCup) {
-    nonuniform = 0;
-  } else {
-    nonuniform = req.body.nonuniformCup.length;
-  }
-  //code to handle defects = undefined in case of no defective cups
-  let defects;
-  if (!req.body.defectCup) {
-    defects = 0;
-  } else {
-    defects = req.body.defectCup.length;
-  }
-
-  // assign cupScore function value to totalScore variable to push to DB
-  const totalScore = cupScore(
-    fragrance,
-    aroma,
-    flavor,
-    aftertaste,
-    acidity,
-    sweetness,
-    mouthfeel,
-    overall,
-    nonuniform,
-    defects
-  );
-
-  console.log(totalScore);
-});
 
 //Define the port for the app to listen on
 app.listen(port, () => {
