@@ -4,4 +4,8 @@
 <a class="btn btn-outline-secondary btn-lg button" href="/form" role="button">Add Coffee</a>
 <a class="btn btn-outline-secondary btn-lg button" href="/logout" role="button">Logout</a>
 
-<%- include("partials/footer.ejs") %>
+<% if(locals.scores) { %> <% scores.forEach(function(score) { %>
+<p><%=score%></p>
+<% })} else { %>
+<p>No scores found</p>
+<% } %> <%- include("partials/footer.ejs") %>

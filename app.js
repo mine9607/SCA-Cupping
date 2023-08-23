@@ -272,10 +272,13 @@ app
 
 app
   .route("/dashboard")
-  .get((req, res) => {
+  .get(async (req, res) => {
     //check authentication to allow user to view this page
     if (req.isAuthenticated()) {
-      res.render("dashboard.ejs");
+      //get all coffee scores from the coffeeDB
+      const foundScores = await ScoreModel.find({});
+
+      res.render("dashboard.ejs", { scores: foundScores });
     } else {
       res.redirect("/login");
     }
@@ -284,6 +287,7 @@ app
   .put()
   .delete();
 
+//Define the logout functionality of the application
 app.get("/logout", (req, res) => {
   req.logout(function (err) {
     if (err) {
