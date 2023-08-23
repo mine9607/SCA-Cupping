@@ -1,11 +1,30 @@
 <%- include("partials/header.ejs") %>
 
 <h1>Dashboard</h1>
-<a class="btn btn-outline-secondary btn-lg button" href="/form" role="button">Add Coffee</a>
-<a class="btn btn-outline-secondary btn-lg button" href="/logout" role="button">Logout</a>
 
-<% if(locals.scores) { %> <% scores.forEach(function(score) { %>
-<p><%=score%></p>
-<% })} else { %>
-<p>No scores found</p>
-<% } %> <%- include("partials/footer.ejs") %>
+<a class="btn btn-outline-secondary btn-lg button my-4" href="/form" role="button">Add Coffee</a>
+<a class="btn btn-outline-secondary btn-lg button my-4 " href="/logout" role="button">Logout</a>
+
+<h2>Cup Scores</h2>
+<% if(locals.scores) { %> 
+  <% scores.forEach(function(score) { %>
+    <p><%=score%></p>
+  <% })} else { %>
+    <p>No scores found</p>
+<% } %> 
+<h2>Users</h2>
+<% if(locals.users) { %> 
+  <% users.forEach(function(user) { %>
+    <p><%=user%></p>
+  <% })} else { %>
+    <p>No users found</p>
+<% } %> 
+<h2>Coffees</h2>
+<% if(locals.coffees) { %> 
+  <% coffees.forEach(function(coffee) { %>
+    <p><%=coffee%></p>
+  <% })} else { %>
+    <p>No coffees found</p>
+<% } %> 
+
+<%- include("partials/footer.ejs") %>

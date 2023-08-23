@@ -117,6 +117,7 @@ const coffeeSchema = new Schema({
   providerName: String,
   providerNumber: Number,
   providerEmail: String,
+  lastPrice: Number,
 });
 
 //define the CoffeeModel to create the 'coffee' collection
@@ -277,8 +278,10 @@ app
     if (req.isAuthenticated()) {
       //get all coffee scores from the coffeeDB
       const foundScores = await ScoreModel.find({});
+      const foundUsers = await UserModel.find({});
+      const foundCoffees = await CoffeeModel.find({});
 
-      res.render("dashboard.ejs", { scores: foundScores });
+      res.render("dashboard.ejs", { users: foundUsers, coffees: foundCoffees, scores: foundScores });
     } else {
       res.redirect("/login");
     }
