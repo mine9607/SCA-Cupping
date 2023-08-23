@@ -8,6 +8,7 @@ import { parse } from "path";
 import session from "express-session";
 import passport from "passport";
 import passportLocalMongoose from "passport-local-mongoose";
+import { stringify } from "querystring";
 
 //create express app framework:
 const app = express();
@@ -40,6 +41,7 @@ const Schema = mongoose.Schema;
 
 //create a coffee schema for new coffees to be stored in the 'coffees' collection
 const scoreSchema = new Schema({
+  userID: String,
   cupperName: String,
   cuppingDate: Date,
   purpose: String,
@@ -108,12 +110,16 @@ passport.deserializeUser(UserModel.deserializeUser());
 
 //create a coffee schema for coffee details
 const coffeeSchema = new Schema({
+  userID: String,
   country: String,
   region: String,
   city: String,
   variety: String,
+  altitude: String,
   process: String,
+  processNotes: String,
   producer: String,
+  farm: String,
   providerName: String,
   providerNumber: Number,
   providerEmail: String,
@@ -157,7 +163,6 @@ app
       username: req.body.username,
       password: req.body.password,
     });
-
     req.login(user, function (err) {
       if (err) {
         console.log(err);
@@ -167,6 +172,38 @@ app
         });
       }
     });
+  });
+
+app
+  .route("/coffee-form")
+  .get((req, res) => {
+    //check authentication to allow user to view the form
+    if (req.isAuthenticated()) {
+      res.render("coffee-form.ejs");
+    } else {
+      res.redirect("/login");
+    }
+  })
+  .post((req, res) => {
+    const newCoffee = new CoffeeModel({
+      userID: req.user.id,
+      country: req.body.country,
+      region: req.body.region,
+      city: req.body.city,
+      variety: req.body.variety,
+      altitude: req.body.altitude,
+      process: req.body.process,
+      processNotes: req.body.processNotes,
+      producer: req.body.producer,
+      farm: req.body.farm,
+      providerName: req.body.providerName,
+      providerPhone: req.body.providerNumber,
+      providerEmail: req.body.providerEmail,
+      lastprice: req.body.price,
+    });
+
+    newCoffee.save();
+    res.redirect("/dashboard");
   });
 
 app
@@ -183,7 +220,7 @@ app
     //view all form inputs
     console.log(req.body);
 
-    //assign form inputs to variables nee3ded for totalScore calculation
+    //assign form inputs to variables needed for totalScore calculation
     const fragrance = parseInt(req.body.fragranceFinalScore);
     const aroma = parseInt(req.body.aromaFinalScore);
     const flavor = parseInt(req.body.flavorFinalScore);
@@ -222,7 +259,9 @@ app
       defects
     );
 
+    //create a cupping Score for a coffee and save to db
     const newScore = new ScoreModel({
+      userID: req.user.id,
       cupperName: req.body.cupperName,
       cuppingDate: req.body.cuppingDate,
       purpose: req.body.purpose,
@@ -276,9 +315,13 @@ app
   .get(async (req, res) => {
     //check authentication to allow user to view this page
     if (req.isAuthenticated()) {
+      //show user data
+      // console.log(req.user);
+      //show user id
+      // console.log(req.user.id);
       //get all coffee scores from the coffeeDB
-      const foundScores = await ScoreModel.find({});
-      const foundUsers = await UserModel.find({});
+      const foundScores = await ScoreModel.find({ userID: req.user.id });
+      const foundUsers = await UserModel.find({ _id: req.user.id });
       const foundCoffees = await CoffeeModel.find({});
 
       res.render("dashboard.ejs", { users: foundUsers, coffees: foundCoffees, scores: foundScores });

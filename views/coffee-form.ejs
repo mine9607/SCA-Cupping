@@ -1,0 +1,201 @@
+<%- include("partials/header.ejs") %>
+
+<div class="container">
+  <section name="formHeader">
+    <div class="row my-3 align-items-center">
+      <div class="col-8">
+        <p class="formTitle">New Coffee Form</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<form action="/coffee-form" method="post">
+  <div class="container border mt-2 mb-4" name="coffeeInfo">
+    <div class="row">
+      <div class="col">
+        <label for="country" class="fs-4 fw-bold my-2">Country:</label>
+        <select class="form-select my-2" id="country" aria-label="Default select example">
+          <option selected>None</option>
+          <option value="1">Bolivia</option>
+          <option value="2">Brazil</option>
+          <option value="3">Burundi</option>
+          <option value="4">China</option>
+          <option value="5">Colombia</option>
+          <option value="6">Costa Rica</option>
+          <option value="7">Cuba</option>
+          <option value="8">Democratic Republic of Congo</option>
+          <option value="9">Dominican Republic</option>
+          <option value="10">Ecuado</option>
+          <option value="11">El Salvador</option>
+          <option value="12">Ethiopia</option>
+          <option value="13">Guatemala</option>
+          <option value="14">Haiti</option>
+          <option value="15">Honduras</option>
+          <option value="16">India</option>
+          <option value="3">Indonesia</option>
+          <option value="3">Jamaica</option>
+          <option value="3">Kenya</option>
+          <option value="3">Malawi</option>
+          <option value="3">Mexico</option>
+          <option value="3">Nicaragua</option>
+          <option value="3">Papua New Guinea</option>
+          <option value="3">Panama</option>
+          <option value="3">Peru</option>
+          <option value="3">Philipines</option>
+          <option value="3">Rwanda</option>
+          <option value="3">Tanzania</option>
+          <option value="3">Thailand</option>
+          <option value="3">Uganda</option>
+          <option value="3">Venezuela</option>
+          <option value="3">Vietnam</option>
+          <option value="3">Yemen</option>
+          <option value="3">Zambia</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="region" class="fs-4 fw-bold my-2">Region:</label>
+        <input
+          type="text"
+          class="form-control my-2"
+          id="region"
+          name="region"
+          placeholder="Region:"
+          aria-label="Name"
+        />
+      </div>
+      <div class="col">
+        <label for="city" class="fs-4 fw-bold my-2">City:</label>
+        <input type="text" class="form-control my-2" id="city" name="city" placeholder="City:" aria-label="Name" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="producerName" class="fs-4 fw-bold my-2">Producer Name:</label>
+        <input
+          type="text"
+          class="form-control my-2"
+          id="producerName"
+          name="producerName"
+          placeholder="Producer:"
+          aria-label="producerName"
+        />
+      </div>
+      <div class="col">
+        <label for="farm" class="fs-4 fw-bold my-2">Farm/Collective:</label>
+        <input
+          type="text"
+          class="form-control my-2"
+          id="farm"
+          name="farm"
+          placeholder="Farm/Collective:"
+          aria-label="farm"
+        />
+      </div>
+      <div class="col">
+        <label for="altitude" class="fs-4 fw-bold my-2">Altitude (M.A.S.L):</label>
+        <input
+          type="number"
+          class="form-control my-2"
+          id="altitude"
+          name="altitude"
+          placeholder="Altitude:"
+          aria-label="Name"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="variety" class="fs-4 fw-bold my-2">Variety:</label>
+        <select class="form-select my-2" id="variety" aria-label="Default select example">
+          <option selected>None</option>
+          <option value="1">Bourbon (Yellow)</option>
+          <option value="2">Bourbon (Orange)</option>
+          <option value="2">Bourbon (Pink)</option>
+          <option value="2">Bourbon (Red)</option>
+          <option value="2">Caturra</option>
+          <option value="2">Catuai</option>
+          <option value="2">Gesha</option>
+          <option value="2">Kent</option>
+          <option value="2">Maragogype</option>
+          <option value="2">Mundo Novo</option>
+          <option value="2">Pacamara</option>
+          <option value="2">SL-28</option>
+          <option value="2">SL-34</option>
+          <option value="2">S795</option>
+          <option value="2">Typica</option>
+          <option value="2">Villa Sarchi</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="process" class="fs-4 fw-bold my-2">Process:</label>
+        <select class="form-select my-2" id="process" aria-label="Default select example">
+          <option selected>None</option>
+          <option value="1">Honey</option>
+          <option value="2">Natural</option>
+          <option value="2">Washed</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <textarea
+          class="form-control my-2"
+          name="extrinsicNotes"
+          placeholder="Type notable process details here..."
+          aria-label="With textarea"
+          rows="5"
+        ></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="container border" name="sellerInfo">
+    <div class="row" name="sellerInfo">
+      <div class="col">
+        <label for="providerName" class="fs-4 fw-bold my-2">Provider:</label>
+        <input
+          type="text"
+          class="form-control my-2"
+          id="providerName"
+          name="providerName"
+          placeholder="Provider name:"
+          aria-label="provider"
+        />
+      </div>
+      <div class="col">
+        <label for="providerPhone" class="fs-4 fw-bold my-2">Provider Phone:</label>
+        <input
+          type="tel"
+          class="form-control my-2"
+          id="providerPhone"
+          name="providerPhone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="555-555-5555"
+          aria-label="providerPhone"
+        />
+      </div>
+      <div class="col">
+        <label for="providerEmail" class="fs-4 fw-bold my-2">Email:</label>
+        <input
+          type="email"
+          class="form-control my-2"
+          id="providerEmail"
+          name="providerEmail"
+          placeholder="Provider email:"
+          aria-label="provider email"
+        />
+      </div>
+      <div class="col">
+        <label for="price" class="fs-4 fw-bold my-2">Price (COP):</label>
+        <div class="input-group my-2">
+          <span class="input-group-text">$</span>
+          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+          <span class="input-group-text">.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-center my-5">
+    <input class="btn btn-light" type="submit" value="Submit" />
+  </div>
+</form>
+
+<%- include("partials/footer.ejs") %>
