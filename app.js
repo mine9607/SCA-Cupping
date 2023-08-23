@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 import axios from "axios";
 import _ from "lodash";
 import { parse } from "path";
+import session from "express-session";
 import passport from "passport";
-import bcrypt from "bcrypt";
-const saltRounds = 10;
+import passportLocalMongoose from "passport-local-mongoose";
 
 //create express app framework:
 const app = express();
@@ -16,6 +16,19 @@ const port = 3000;
 //set static file folder and initiate body-parser
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//initialize the session middle-ware
+app.use(
+  session({
+    secret: process.env.PASSPORT_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+//initialize passport to enable use for authentication
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Use mongoose to connect to a mongodb with password saved as environment variable
 await mongoose.connect(
@@ -74,22 +87,24 @@ const scoreSchema = new Schema({
 //define the CoffeeModel to create the 'coffees' collection
 const ScoreModel = new mongoose.model("Score", scoreSchema);
 
-//testing inserting of new coffee to the 'coffees collection
-const defaultScore = new ScoreModel({});
-//defaultScore.save();
-
 //create a user schema for new users to be stored in the 'users' collection and reference the coffee collection
 const userSchema = new Schema({
-  email: { type: String, default: "test@123.com" },
-  password: { type: String, default: "123" },
+  email: String,
+  password: String,
 });
+
+//plugin used to salt and hash user passwords and save users into MongoDB users collection
+userSchema.plugin(passportLocalMongoose);
 
 //define the UserModel to create the 'users' collection
 const UserModel = new mongoose.model("User", userSchema);
 
-//testing inserting of new user to the 'users' collection
-const defaultUser = new UserModel({});
-//defaultUser.save();
+//passport-local-mongoose simplified code for creating a local strategy
+passport.use(UserModel.createStrategy());
+
+//serialize = create cookie and deserialize = open cookie and read user authentication
+passport.serializeUser(UserModel.serializeUser());
+passport.deserializeUser(UserModel.deserializeUser());
 
 //create a coffee schema for coffee details
 const coffeeSchema = new Schema({
@@ -107,10 +122,6 @@ const coffeeSchema = new Schema({
 //define the CoffeeModel to create the 'coffee' collection
 const CoffeeModel = new mongoose.model("Coffee", coffeeSchema);
 
-//testing inserting a new coffee in the 'coffee' collection
-const defaultCoffee = new CoffeeModel({});
-//defaultCoffee.save();
-
 //DEFINE RESTFUL APIs
 app.get("/", (req, res) => {
   res.render("home.ejs");
@@ -122,14 +133,16 @@ app
     res.render("register.ejs");
   })
   .post((req, res) => {
-    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
-      const newUser = new UserModel({
-        email: req.body.email,
-        password: hash,
-      });
-
-      newUser.save();
-      res.redirect("/");
+    //note: passport doesn't authenticate correctly if the name of the email input is "email" and not "username"
+    UserModel.register({ username: req.body.username }, req.body.password, function (err, user) {
+      if (err) {
+        console.log(err);
+        res.redirect("/register");
+      } else {
+        passport.authenticate("local")(req, res, function () {
+          res.redirect("/dashboard");
+        });
+      }
     });
   });
 
@@ -138,35 +151,32 @@ app
   .get((req, res) => {
     res.render("login.ejs");
   })
-  .post(async (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+  .post((req, res) => {
+    const user = new UserModel({
+      username: req.body.username,
+      password: req.body.password,
+    });
 
-    //compare user email and password against registered list of users
-    //to query a database without error handling
-    const foundUser = await UserModel.findOne({ email: email });
-    console.log(foundUser);
-    if (foundUser) {
-      bcrypt.compare(password, foundUser.password, function (err, result) {
-        if (result === true) {
-          res.render("dashboard.ejs");
-        }
-      });
-    }
-
-    //to query a database use the "try", "await", "catch" syntax for error handling
-    // try {
-    //   const foundUser = await UserModel.findOne({ email: email });
-    //   console.log(foundUser);
-    // } catch (error) {
-    //   console.log("Error:", error);
-    // }
+    req.login(user, function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        passport.authenticate("local")(req, res, function () {
+          res.redirect("/dashboard");
+        });
+      }
+    });
   });
 
 app
   .route("/form")
   .get((req, res) => {
-    res.render("form.ejs");
+    //check authentication to allow user to view this page
+    if (req.isAuthenticated()) {
+      res.render("form.ejs");
+    } else {
+      res.redirect("/login");
+    }
   })
   .post((req, res) => {
     //view all form inputs
@@ -259,6 +269,30 @@ app
     newScore.save();
     res.redirect("/dashboard");
   });
+
+app
+  .route("/dashboard")
+  .get((req, res) => {
+    //check authentication to allow user to view this page
+    if (req.isAuthenticated()) {
+      res.render("dashboard.ejs");
+    } else {
+      res.redirect("/login");
+    }
+  })
+  .post()
+  .put()
+  .delete();
+
+app.get("/logout", (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    res.redirect("/");
+  });
+});
 
 //Define the port for the app to listen on
 app.listen(port, () => {
