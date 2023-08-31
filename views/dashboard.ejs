@@ -37,6 +37,24 @@
 </div>
 
 <h2 class="my-4">Coffees</h2>
+<div class="container border">
+  <div class="row text-center justify-content-center">
+    <div class="col fs-3 fw-bold">Cupper</div>
+    <div class="col fs-3 fw-bold">CoffeeID</div>
+    <div class="col fs-3 fw-bold">Total Score</div>
+  </div>
+  <% if(locals.scores) { %>
+    <% scores.forEach(function(score){ %>
+      <div class="row text-center justify-content-center">
+        <div class="col"><%=score.cupperName%></div>
+        <div class="col"><%=score.coffeeId%></div>
+        <div class="col"><%=score.totalScore%></div>
+      </div>
+    <% }) %>
+  <% } %>
+  </div>
+</div>
+
 <% if(locals.coffees) { %> <% coffees.forEach(function(coffee) { %>
 <p><%=coffee%></p>
 <% })} else { %>

@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //initialize the session middle-ware
 app.use(
   session({
-    secret: process.env.PASSPORT_SECRET,
+    secret: process.env.PASSPORT_SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
