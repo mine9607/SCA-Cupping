@@ -1,14 +1,11 @@
 import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import axios from "axios";
 import _ from "lodash";
-import { parse } from "path";
 import session from "express-session";
 import passport from "passport";
-import passportLocalMongoose from "passport-local-mongoose";
-import { stringify } from "querystring";
+import { ScoreModel, CoffeeModel } from "./lib/db-setup.js";
+import UserModel from "./lib/session-setup.js";
 
 //create express app framework:
 const app = express();
@@ -30,104 +27,6 @@ app.use(
 //initialize passport to enable use for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-
-//Use mongoose to connect to a mongodb with password saved as environment variable
-await mongoose.connect(
-  `mongodb+srv://crunchySumo6960:${process.env.DB_PASSWORD}@cluster0.vwk3y8s.mongodb.net/coffeeDB`
-);
-
-//create the mongoose "Schema keyword"
-const Schema = mongoose.Schema;
-
-//create a coffee schema for new coffees to be stored in the 'coffees' collection
-const scoreSchema = new Schema({
-  userID: String,
-  cupperName: String,
-  cuppingDate: Date,
-  purpose: String,
-  coffeeId: { type: String, default: "none provided" },
-  fragranceIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  fragranceScore: { type: Array, default: 0 },
-  fragranceFinalScore: { type: Number, default: 0 },
-  aromaIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  aromaScore: { type: Array, default: 0 },
-  aromaFinalScore: { type: Number, default: 0 },
-  smellCharacter: { type: Array, default: ["none provided"] },
-  smellNotes: { type: String, default: "non provided" },
-  flavorIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  flavorScore: { type: Array, default: 0 },
-  flavorFinalScore: { type: Number, default: 0 },
-  aftertasteIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  aftertasteScore: { type: Array, default: 0 },
-  aftertasteFinalScore: { type: Number, default: 0 },
-  flavorCharacter: { type: Array, default: ["none provided"] },
-  taste: { type: Array, default: ["none provided"] },
-  tasteNotes: { type: String, default: "non provided" },
-  acidIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  acidityScore: { type: Array, default: 0 },
-  acidityFinalScore: { type: Number, default: 0 },
-  acidityCharacter: { type: Array, default: ["none provided"] },
-  acidityNotes: { type: String, default: "non provided" },
-  sweetnessIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  sweetnessScore: { type: Array, default: 0 },
-  sweetnessFinalScore: { type: Number, default: 5 },
-  sweetnessNotes: { type: String, default: "non provided" },
-  mouthfeelIntensity: { type: Number, min: 0, max: 15, default: 0 },
-  mouthfeelScore: { type: Array, default: 0 },
-  mouthfeelFinalScore: { type: Number, default: 0 },
-  mouthfeelCharacter: { type: Array, default: ["none provided"] },
-  mouthfeelNotes: { type: String, default: "non provided" },
-  extrinsicNotes: String,
-  overallScore: { type: Array, default: 0 },
-  overallFinalScore: { type: Number, default: 0 },
-  nonUniformCups: { type: Array, default: 0 },
-  defectiveCups: { type: Array, default: 0 },
-  defectType: { type: Array, default: ["none"] },
-  totalScore: Number,
-});
-
-//define the CoffeeModel to create the 'coffees' collection
-const ScoreModel = new mongoose.model("Score", scoreSchema);
-
-//create a user schema for new users to be stored in the 'users' collection and reference the coffee collection
-const userSchema = new Schema({
-  email: String,
-  password: String,
-});
-
-//plugin used to salt and hash user passwords and save users into MongoDB users collection
-userSchema.plugin(passportLocalMongoose);
-
-//define the UserModel to create the 'users' collection
-const UserModel = new mongoose.model("User", userSchema);
-
-//passport-local-mongoose simplified code for creating a local strategy
-passport.use(UserModel.createStrategy());
-
-//serialize = create cookie and deserialize = open cookie and read user authentication
-passport.serializeUser(UserModel.serializeUser());
-passport.deserializeUser(UserModel.deserializeUser());
-
-//create a coffee schema for coffee details
-const coffeeSchema = new Schema({
-  userID: String,
-  country: String,
-  region: String,
-  city: String,
-  variety: String,
-  altitude: String,
-  process: String,
-  processNotes: String,
-  producer: String,
-  farm: String,
-  providerName: String,
-  providerNumber: Number,
-  providerEmail: String,
-  lastPrice: Number,
-});
-
-//define the CoffeeModel to create the 'coffee' collection
-const CoffeeModel = new mongoose.model("Coffee", coffeeSchema);
 
 //DEFINE RESTFUL APIs
 app.get("/", (req, res) => {

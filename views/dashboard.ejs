@@ -39,16 +39,22 @@
 <h2 class="my-4">Coffees</h2>
 <div class="container border">
   <div class="row text-center justify-content-center">
-    <div class="col fs-3 fw-bold">Cupper</div>
-    <div class="col fs-3 fw-bold">CoffeeID</div>
-    <div class="col fs-3 fw-bold">Total Score</div>
+    <div class="col fs-3 fw-bold">Region</div>
+    <div class="col fs-3 fw-bold">City</div>
+    <div class="col fs-3 fw-bold">Farm</div>
+    <div class="col fs-3 fw-bold">Altitude (m.a.s.l)</div>
+    <div class="col fs-3 fw-bold">Producer / Cooperativo</div>
+    <div class="col fs-3 fw-bold">Provider Email</div>
   </div>
-  <% if(locals.scores) { %>
-    <% scores.forEach(function(score){ %>
+  <% if(locals.coffees) { %>
+    <% coffees.forEach(function(coffee){ %>
       <div class="row text-center justify-content-center">
-        <div class="col"><%=score.cupperName%></div>
-        <div class="col"><%=score.coffeeId%></div>
-        <div class="col"><%=score.totalScore%></div>
+        <div class="col"><%=coffee.region%></div>
+        <div class="col"><%=coffee.city%></div>
+        <div class="col"><%=coffee.farm%></div>
+        <div class="col"><%=coffee.altitude%></div>
+        <div class="col"><%=coffee.providerName%></div>
+        <div class="col"><%=coffee.providerEmail%></div>
       </div>
     <% }) %>
   <% } %>
