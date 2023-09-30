@@ -15,42 +15,42 @@
     <div class="row">
       <div class="col">
         <label for="country" class="fs-4 fw-bold my-2">Country:</label>
-        <select class="form-select my-2" id="country" aria-label="Default select example">
+        <select class="form-select my-2" id="country" name="country" aria-label="Default select example">
           <option selected>None</option>
-          <option value="1">Bolivia</option>
-          <option value="2">Brazil</option>
-          <option value="3">Burundi</option>
-          <option value="4">China</option>
-          <option value="5">Colombia</option>
-          <option value="6">Costa Rica</option>
-          <option value="7">Cuba</option>
-          <option value="8">Democratic Republic of Congo</option>
-          <option value="9">Dominican Republic</option>
-          <option value="10">Ecuado</option>
-          <option value="11">El Salvador</option>
-          <option value="12">Ethiopia</option>
-          <option value="13">Guatemala</option>
-          <option value="14">Haiti</option>
-          <option value="15">Honduras</option>
-          <option value="16">India</option>
-          <option value="3">Indonesia</option>
-          <option value="3">Jamaica</option>
-          <option value="3">Kenya</option>
-          <option value="3">Malawi</option>
-          <option value="3">Mexico</option>
-          <option value="3">Nicaragua</option>
-          <option value="3">Papua New Guinea</option>
-          <option value="3">Panama</option>
-          <option value="3">Peru</option>
-          <option value="3">Philipines</option>
-          <option value="3">Rwanda</option>
-          <option value="3">Tanzania</option>
-          <option value="3">Thailand</option>
-          <option value="3">Uganda</option>
-          <option value="3">Venezuela</option>
-          <option value="3">Vietnam</option>
-          <option value="3">Yemen</option>
-          <option value="3">Zambia</option>
+          <option value="Bolivia">Bolivia</option>
+          <option value="Brazil">Brazil</option>
+          <option value="Burundi">Burundi</option>
+          <option value="China">China</option>
+          <option value="Colombia">Colombia</option>
+          <option value="Costa Rica">Costa Rica</option>
+          <option value="Cuba">Cuba</option>
+          <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+          <option value="Dominican Republic">Dominican Republic</option>
+          <option value="Ecuador">Ecuador</option>
+          <option value="El Salvador">El Salvador</option>
+          <option value="Ethiopia">Ethiopia</option>
+          <option value="Guatemala">Guatemala</option>
+          <option value="Haiti">Haiti</option>
+          <option value="Honduras">Honduras</option>
+          <option value="India">India</option>
+          <option value="Indonesia">Indonesia</option>
+          <option value="Jamaica">Jamaica</option>
+          <option value="Kenya">Kenya</option>
+          <option value="Malawi">Malawi</option>
+          <option value="Mexico">Mexico</option>
+          <option value="Nicaragua">Nicaragua</option>
+          <option value="Papua New Guinea">Papua New Guinea</option>
+          <option value="Panama">Panama</option>
+          <option value="Peru">Peru</option>
+          <option value="Philipines">Philipines</option>
+          <option value="Rwanda">Rwanda</option>
+          <option value="Tanzania">Tanzania</option>
+          <option value="Thailand">Thailand</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Venezuela">Venezuela</option>
+          <option value="Vietnam">Vietnam</option>
+          <option value="Yemen">Yemen</option>
+          <option value="Zambia">Zambia</option>
         </select>
       </div>
       <div class="col">
@@ -107,39 +107,40 @@
     <div class="row">
       <div class="col">
         <label for="variety" class="fs-4 fw-bold my-2">Variety:</label>
-        <select class="form-select my-2" id="variety" aria-label="Default select example">
+        <select class="form-select my-2" id="variety" name="variety" aria-label="Default select example">
           <option selected>None</option>
-          <option value="1">Bourbon (Yellow)</option>
-          <option value="2">Bourbon (Orange)</option>
-          <option value="2">Bourbon (Pink)</option>
-          <option value="2">Bourbon (Red)</option>
-          <option value="2">Caturra</option>
-          <option value="2">Catuai</option>
-          <option value="2">Gesha</option>
-          <option value="2">Kent</option>
-          <option value="2">Maragogype</option>
-          <option value="2">Mundo Novo</option>
-          <option value="2">Pacamara</option>
-          <option value="2">SL-28</option>
-          <option value="2">SL-34</option>
-          <option value="2">S795</option>
-          <option value="2">Typica</option>
-          <option value="2">Villa Sarchi</option>
+          <option value="Bourbon (Yellow)">Bourbon (Yellow)</option>
+          <option value="Bourbon (Orange)">Bourbon (Orange)</option>
+          <option value="Bourbon (Pink)">Bourbon (Pink)</option>
+          <option value="Bourbon (Red)">Bourbon (Red)</option>
+          <option value="Caturra">Caturra</option>
+          <option value="Catuai">Catuai</option>
+          <option value="Gesha">Gesha</option>
+          <option value="Kent">Kent</option>
+          <option value="Maragogype">Maragogype</option>
+          <option value="Mundo Novo">Mundo Novo</option>
+          <option value="Pacamara">Pacamara</option>
+          <option value="SL-28">SL-28</option>
+          <option value="SL-34">SL-34</option>
+          <option value="S795">S795</option>
+          <option value="Typica">Typica</option>
+          <option value="Villa Sarchi">Villa Sarchi</option>
         </select>
       </div>
       <div class="col">
         <label for="process" class="fs-4 fw-bold my-2">Process:</label>
-        <select class="form-select my-2" id="process" aria-label="Default select example">
+        <select class="form-select my-2" id="process" name="process" aria-label="Default select example">
           <option selected>None</option>
-          <option value="1">Honey</option>
-          <option value="2">Natural</option>
-          <option value="2">Washed</option>
+          <option value="Honey">Honey</option>
+          <option value="Natural">Natural</option>
+          <option value="Washed">Washed</option>
         </select>
       </div>
       <div class="input-group">
         <textarea
           class="form-control my-2"
-          name="extrinsicNotes"
+          id="processNotes"
+          name="processNotes"
           placeholder="Type notable process details here..."
           aria-label="With textarea"
           rows="5"
@@ -184,10 +185,16 @@
         />
       </div>
       <div class="col">
-        <label for="price" class="fs-4 fw-bold my-2">Price (COP):</label>
+        <label for="coffeePrice" class="fs-4 fw-bold my-2">Price (COP):</label>
         <div class="input-group my-2">
           <span class="input-group-text">$</span>
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" />
+          <input
+            type="number"
+            class="form-control"
+            id="coffeePrice"
+            name="coffeePrice"
+            aria-label="Amount (to the nearest dollar)"
+          />
           <span class="input-group-text">.00</span>
         </div>
       </div>

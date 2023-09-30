@@ -93,12 +93,12 @@ app
       altitude: req.body.altitude,
       process: req.body.process,
       processNotes: req.body.processNotes,
-      producer: req.body.producer,
+      producer: req.body.producerName,
       farm: req.body.farm,
       providerName: req.body.providerName,
-      providerPhone: req.body.providerNumber,
+      providerPhone: req.body.providerPhone,
       providerEmail: req.body.providerEmail,
-      lastprice: req.body.price,
+      coffeePrice: req.body.coffeePrice,
     });
 
     newCoffee.save();
@@ -221,7 +221,7 @@ app
       //get all coffee scores from the coffeeDB
       const foundScores = await ScoreModel.find({ userID: req.user.id });
       const foundUsers = await UserModel.find({ _id: req.user.id });
-      const foundCoffees = await CoffeeModel.find({});
+      const foundCoffees = await CoffeeModel.find({ userID: req.user.id });
 
       res.render("dashboard.ejs", { users: foundUsers, coffees: foundCoffees, scores: foundScores });
     } else {
