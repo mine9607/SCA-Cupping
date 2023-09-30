@@ -222,8 +222,16 @@ app
       const foundScores = await ScoreModel.find({ userID: req.user.id });
       const foundUsers = await UserModel.find({ _id: req.user.id });
       const foundCoffees = await CoffeeModel.find({ userID: req.user.id });
+      const aggCoffees = await CoffeeModel.aggregate().sort({ country: 1 });
+      const aggScores = await ScoreModel.aggregate().sort({ totalScore: -1 });
 
-      res.render("dashboard.ejs", { users: foundUsers, coffees: foundCoffees, scores: foundScores });
+      res.render("dashboard.ejs", {
+        users: foundUsers,
+        coffees: foundCoffees,
+        scores: foundScores,
+        coffeelist: aggCoffees,
+        scorelist: aggScores,
+      });
     } else {
       res.redirect("/login");
     }

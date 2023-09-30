@@ -1,46 +1,99 @@
+
 <%- include("partials/header.ejs") %>
+<body>
+  <nav class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <div class="text-end">
+          <a class="btn bg-light btn-lg button my-2" href="/" role="button">Home</a>
+        </div>
+        <div class="text-end">
+          <a class="btn btn-warning btn-lg button my-2" href="/logout" role="button">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<% if(locals.users) { %> <% users.forEach(function(user) { %>
-<p class="display-5 my-2">Welcome: <%=user.username%></p>
-<% })} else { %>
-<p>No users found</p>
-<% } %>
+  <div class="container justify-content-between">
+    <div class="flex row ">
+      <p class="col display-6 my-2">Welcome <%=users[0].username%></p>
+      <div class="col">
+        <a class="btn btn-outline-secondary btn-lg button my-2" href="/coffee-form" role="button"><span>Add Coffee</span></a>
+        <a class="btn btn-outline-secondary btn-lg button my-2" href="/form" role="button"><span>Add Score</span></a>
+      </div>
+    </div>
+  </div>
 
-<%# const aggregatedCoffees = coffees.aggregate() %>
-<%# console.log(aggregatedCoffees)%>
-
-<a class="btn btn-outline-secondary btn-lg button my-2" href="/coffee-form" role="button">Add Coffee</a>
-<a class="btn btn-outline-secondary btn-lg button my-2" href="/form" role="button">Add Score</a>
-<a class="btn btn-outline-secondary btn-lg button my-2" href="/logout" role="button">Logout</a>
-
-<h2 class="my-4">Cup Scores</h2>
+<!-- Scores Data -->
 <div class="container border">
+  <h2 class="my-4">Cup Scores</h2>
+  <div class="col">
+    <label for="sortScore" class="fs-4 fw-bold my-2">Sort By:</label>
+    <select class="form-select my-2" id="sortScore" name="sortScore" aria-label="Default select example">
+      <option selected>None</option>
+      <option value="user">User</option>
+      <option value="totalScore">Total Score</option>
+      <option value="cuppingDate">Cup Date</option>
+    </select>
+  </div>
   <div class="row text-center justify-content-center">
     <div class="col fs-3 fw-bold">Cupper</div>
     <div class="col fs-3 fw-bold">CoffeeID</div>
+    <div class="col fs-3 fw-bold">Defects</div>
+    <div class="col fs-3 fw-bold">Defect Type</div>
     <div class="col fs-3 fw-bold">Total Score</div>
+    <div class="col fs-3 fw-bold">Cupping Date</div>
   </div>
   <% if(locals.scores) { %>
     <% scores.forEach(function(score){ %>
       <div class="row text-center justify-content-center">
         <div class="col"><%=score.cupperName%></div>
         <div class="col"><%=score.coffeeId%></div>
+        <div class="col"><%=score.defectiveCups%></div>
+        <div class="col"><%=score.defectType%></div>
         <div class="col"><%=score.totalScore%></div>
+        <div class="col">
+          <% // Parse the cuppingDate string into a Date object --> %>
+          <% const cuppingDate = new Date(score.cuppingDate); %>
+          <% // Format the date as "Month Day, Year" (e.g., "June 7, 2005") --> %>
+          <% const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }; %>
+          <% const formattedCuppingDate = cuppingDate.toLocaleDateString(undefined, options); %>
+          <%= formattedCuppingDate %>
+        </div>
       </div>
     <% }) %>
   <% } %>
   </div>
 </div>
-<div class="container my-4">
-<% if(locals.scores) { %> <% scores.forEach(function(score) { %>
-<p><%=score%></p>
-<% })} else { %>
-<p>No scores found</p>
-<% } %>
+
+<!-- Sorted list data -->
+<div class="container">
+  <% if(locals.scorelist) { %>
+    <% scorelist.forEach(function(score){ %>
+      <div class="row text-center justify-content-center">
+        <div class="col"><%=score.cupperName%></div>
+        <div class="col"><%=score.coffeeId%></div>
+        <div class="col"><%=score.defectiveCups%></div>
+        <div class="col"><%=score.defectType%></div>
+        <div class="col"><%=score.totalScore%></div>
+      </div>
+    <% }) %>
+  <% } %>
 </div>
 
-<h2 class="my-4">Coffees</h2>
+<!-- Coffees Data -->
 <div class="container border">
+  <h2 class="my-4">Coffees</h2>
+<div class="col">
+  <label for="sortCoffee" class="fs-4 fw-bold my-2">Sort By:</label>
+  <select class="form-select my-2" id="sortCoffee" name="sortCoffee" aria-label="Default select example">
+    <option selected>None</option>
+    <option value="user">User</option>
+    <option value="country">Country</option>
+    <option value="variety">Variety</option>
+    <option value="Process">Variety</option>
+  </select>
+</div>
   <div class="row text-center justify-content-center align-items-center">
     <div class="col fs-5 fw-bold">Country</div>
     <div class="col fs-5 fw-bold">Variety</div>
@@ -70,12 +123,30 @@
   </div>
 </div>
 
+<!-- Sorted list data -->
+
+  <div class="container">
+    <% if(locals.coffeelist) { %>
+      <% coffeelist.forEach(function(coffee){ %>
+          <div class="row text-center justify-content-center">
+            <div class="col"><%=coffee.country%></div>
+            <div class="col"><%=coffee.variety%></div>
+            <div class="col"><%=coffee.process%></div>
+            <div class="col"><%=coffee.altitude%></div>
+            <div class="col"><%=coffee.producer%></div>
+            <div class="col"><%=coffee.providerName%></div>
+            <div class="col"><%=coffee.providerPhone%></div>
+            <div class="col"><%=coffee.providerEmail%></div>
+            <div class="col"><%=coffee.coffeePrice%></div>
+          </div>
+      <% }) %>
+    <% } %>
+  </div>
 
 
-<% if(locals.coffees) { %> <% coffees.forEach(function(coffee) { %>
-<p><%=coffee%></p>
-<% })} else { %>
-<p>No coffees found</p>
 
 
-<% } %> <%- include("partials/footer.ejs") %>
+
+
+
+<%- include("partials/footer.ejs") %>
