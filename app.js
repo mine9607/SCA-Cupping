@@ -10,7 +10,8 @@ import sum from "./utils/functions.js";
 
 //create express app framework:
 const app = express();
-const port = 3000;
+//do I comment out port 3000 when deploying???
+// const port = 3000;
 
 //set static file folder and initiate body-parser
 app.use(express.static("public"));
