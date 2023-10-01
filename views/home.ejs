@@ -1,24 +1,40 @@
 <%- include("partials/header.ejs") %>
-<div class="container text-center justify-content-center">
-  <div class="overflow-hidden m-5" style="max-height: 30vh">
-    <img
-      class="img SCA-logo"
-      style="max-width: 200px"
-      src="https://images.squarespace-cdn.com/content/v1/584f6bbef5e23149e5522201/1585137262099-VOUGJUSB290Z3UZCBAGP/SCA_logo_header.jpg"
-      alt="Specialty Coffee Association"
-    />
-  </div>
-  <h1 class="display-3 text-body-emphasis mb-5">Cupping Database</h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="fs-4 fw-light mb-5">
-      Register and login to access an easy to use online SCA Cupping form to store all your coffee cupping profiles.
-      Take your QA/QC, Purchasing and/or Roasting to the next level with this easy to use resource and never struggle to
-      organize your coffees again!
-    </p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-center mb-4 gap-4">
-      <a class="btn btn-outline-secondary btn-lg" href="/register" role="button">Register</a>
-      <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+
+<body>
+  <nav class="p-3 text-bg-dark">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-between">
+        <div class="text-end">
+          <a class="btn btn-lg bg-light" href="/" role="button">Home</a>
+        </div>
+        <div class="text-end">
+          <a class="btn btn-warning" href="/Login" role="button">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="m-5 p-5 container text-center justify-content-center">
+    <div class="m-5" style="max-height: 50vh">
+      <img
+        class="img SCA-logo"
+        style="max-width: 200px"
+        src="https://images.squarespace-cdn.com/content/v1/584f6bbef5e23149e5522201/1585137262099-VOUGJUSB290Z3UZCBAGP/SCA_logo_header.jpg"
+        alt="Specialty Coffee Association"
+      />
+    </div>
+    <h1 class="display-3 text-body-emphasis mb-5">Cupping Database</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="fs-4 fw-light mb-5">
+        Register and login to access an easy to use online SCA Cupping form to store all your coffee cupping profiles.
+        Take your QA/QC, Purchasing and/or Roasting to the next level with this easy to use resource and never struggle
+        to organize your coffees again!
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-center mb-4 gap-4">
+        <a class="btn btn-outline-secondary btn-lg" href="/register" role="button">Register</a>
+        <a class="btn btn-dark btn-lg" href="/login" role="button">Login</a>
+      </div>
     </div>
   </div>
-</div>
-<%- include("partials/footer.ejs") %>
+  <%- include("partials/footer.ejs") %>
+</body>
