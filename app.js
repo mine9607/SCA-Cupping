@@ -6,6 +6,7 @@ import session from "express-session";
 import passport from "passport";
 import { ScoreModel, CoffeeModel } from "./lib/db-setup.js";
 import UserModel from "./lib/session-setup.js";
+import sum from "./utils/functions.js";
 
 //create express app framework:
 const app = express();
@@ -27,6 +28,11 @@ app.use(
 //initialize passport to enable use for authentication
 app.use(passport.initialize());
 app.use(passport.session());
+
+//Test route API for JS function testing
+app.get("/test-route", (req, res) => {
+  res.render("test.ejs", { sum: sum });
+});
 
 //DEFINE RESTFUL APIs
 app.get("/", (req, res) => {
@@ -222,15 +228,16 @@ app
       const foundScores = await ScoreModel.find({ userID: req.user.id });
       const foundUsers = await UserModel.find({ _id: req.user.id });
       const foundCoffees = await CoffeeModel.find({ userID: req.user.id });
-      const aggCoffees = await CoffeeModel.aggregate().sort({ country: 1 });
-      const aggScores = await ScoreModel.aggregate().sort({ totalScore: -1 });
+      // sort coffees from db - could be used as a default sort on the db request
+      // const aggCoffees = await CoffeeModel.aggregate().sort({ country: 1 });
+      // const aggScores = await ScoreModel.aggregate().sort({ totalScore: -1 });
 
       res.render("dashboard.ejs", {
         users: foundUsers,
         coffees: foundCoffees,
         scores: foundScores,
-        coffeelist: aggCoffees,
-        scorelist: aggScores,
+        // coffeelist: aggCoffees,
+        // scorelist: aggScores,
       });
     } else {
       res.redirect("/login");
