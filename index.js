@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
 import _ from "lodash";
+import mongoose from "mongoose";
 import session from "express-session";
 import passport from "passport";
 import { ScoreModel, CoffeeModel } from "./lib/db-setup.js";
@@ -11,11 +12,16 @@ import sum from "./utils/functions.js";
 //create express app framework:
 const app = express();
 //do I comment out port 3000 when deploying???
-// const port = 3000;
+const port = process.env.PORT || 3000;
 
 //set static file folder and initiate body-parser
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//Use mongoose to connect to a mongodb with password saved as environment variable
+const connectDB = await mongoose.connect(
+  `mongodb+srv://crunchySumo6960:${process.env.DB_PASSWORD}@cluster0.vwk3y8s.mongodb.net/coffeeDB`
+);
 
 //initialize the session middle-ware
 app.use(
